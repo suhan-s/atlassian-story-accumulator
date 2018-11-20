@@ -26,15 +26,18 @@ public class PushIssueSumServlet extends HttpServlet {
         String name = request.getParameterMap().containsKey("name") ? request.getParameter("name") : null;
         String query = request.getParameterMap().containsKey("query") ? request.getParameter("query") : null;
         Map<String,String> responseMap = new HashMap<>();
-
         if (Util.isStringSet(name) && Util.isStringSet(query)) {
-
-            StorySummarizer.pushTotalStoryPoints(name, query);
+            try{
+                StorySummarizer.pushTotalStoryPoints(name, query);
+                responseMap.put("status", "success");
+            }catch (Exception e){
+                responseMap.put("status", "failed");
+                responseMap.put("errorMsg", "Error while getting and pushing data");
+            }
         } else {
             responseMap.put("status", "failed");
             responseMap.put("errorMsg", "Missing parameter");
         }
-
         response.setContentType("application/json");
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         PrintWriter writer = response.getWriter();
