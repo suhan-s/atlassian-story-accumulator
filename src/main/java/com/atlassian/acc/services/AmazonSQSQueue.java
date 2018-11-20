@@ -19,25 +19,21 @@ import java.util.stream.Collectors;
 /**
  * Created by suhan.s on 11/20/2018.
  */
-public class AmazonSQSQueue implements MessageQueue{
+public class AmazonSQSQueue implements MessageQueue {
     private AmazonSQS client;
     private String queueUrl;
     private static final Logger log = LogManager.getLogger(AmazonSQSQueue.class);
 
     public AmazonSQSQueue() {
-        client = AmazonSQSClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(Constants.SQS_ACCESS_KEY, Constants.SQS_SECRET_KEY)))
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(Constants.SQS_ENDPOINT, Constants.SQS_REGION))
-                .build();
-        queueUrl = Constants.SQS_QUEUE_URL;
+        this(new AmazonSQSConfig(Constants.SQS_ENDPOINT, Constants.SQS_ACCESS_KEY, Constants.SQS_SECRET_KEY, Constants.SQS_REGION));
     }
 
     public AmazonSQSQueue(AmazonSQSConfig config) {
-        client = AmazonSQSClientBuilder.standard()
+        this.client = AmazonSQSClientBuilder.standard()
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(config.getAccessKey(), config.getSecretKey())))
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(config.getEndPoint(), config.getRegion()))
                 .build();
-        queueUrl = Constants.SQS_QUEUE_URL;
+        this.queueUrl = Constants.SQS_QUEUE_URL;
     }
 
     public AmazonSQSQueue(AmazonSQS client, String queueUrl) {
@@ -80,6 +76,6 @@ public class AmazonSQSQueue implements MessageQueue{
     }
 
     public static void main(String[] args) {
-        System.out.println(new AmazonSQSQueue().receiveMessage());
+            System.out.println(new AmazonSQSQueue().receiveMessage());
+        }
     }
-}
