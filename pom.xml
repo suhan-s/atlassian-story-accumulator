@@ -98,8 +98,8 @@
                 <SQS_REGION>elasticmq</SQS_REGION>
                 <SQS_ACCESS_KEY>x</SQS_ACCESS_KEY>
                 <SQS_SECRET_KEY>x</SQS_SECRET_KEY>
-                <SQS_QUEUE_PATH>queue/</SQS_QUEUE_PATH>
-                <JIRA_BASE_URL>http://localhost:8080/</JIRA_BASE_URL>
+                <SQS_QUEUE_URL>http://192.168.99.100:9324/queue/cst-test-queue</SQS_QUEUE_URL>
+                <JIRA_BASE_URL>http://192.168.99.100:8080/</JIRA_BASE_URL>
             </properties>
         </profile>
         <profile>
