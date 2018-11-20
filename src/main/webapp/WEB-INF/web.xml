@@ -13,13 +13,4 @@
         <servlet-name>PushIssueSumServlet</servlet-name>
         <url-pattern>/api/issue/sum</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>TestOutputServlet</servlet-name>
-        <servlet-class>com.atlassian.acc.servlet.TestOutputServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TestOutputServlet</servlet-name>
-        <url-pattern>/rest/api/2/search</url-pattern>
-    </servlet-mapping>
 </web-app>
